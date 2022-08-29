@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useRouter } from 'next/dist/client/router'
 
 const LoginPage = () => {
 
@@ -8,6 +9,7 @@ const LoginPage = () => {
         password: ""
     })
     
+    const router = useRouter();
     
     const handleChange = (e) => {
         setCredentials({...credentials, [e.target.name]: e.target.value});
@@ -17,6 +19,9 @@ const LoginPage = () => {
         e.preventDefault();
         console.log(credentials);
         const response = await axios.post("api/auth/login", credentials);
+        if (response.status === 200) {
+            router.push("/dashboard")
+        }
         console.log(response);
     }
 

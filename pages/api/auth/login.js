@@ -16,7 +16,7 @@ export default function loginHandler(req, res) {
         // El segundo parámetro es un string a elección y se recomienda ingresarlo desde variable de entorno.
         const token = jwt.sign({
             // Expiración del token (en este caso 30 días)
-            exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 30),
+            exp: Math.floor(Date.now()) + (60 * 60 * 24 * 30) / 1000,
             // Estos se obtendrían de una base de datos
             email: "admin@local.local",
             username: "fazt"
